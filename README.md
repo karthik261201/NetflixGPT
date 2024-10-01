@@ -2,6 +2,25 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Netflix-GPT
+- create react app
+- configured tailwind css
+
+## Features
+- Login/Sign Up
+    - Sign In /Sign up Form
+    - redirect to Browse Page
+- Browse (after authentication)
+    - Header
+    - Main Movie
+        - Trailer in Background
+        - Title & Description
+        - MovieSuggestions
+            - MovieLists * N
+- NetflixGPT
+    - Search Bar
+    - Movie Suggestions
+
 ## Available Scripts
 
 In the project directory, you can run:
