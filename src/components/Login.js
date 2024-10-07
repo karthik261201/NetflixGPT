@@ -3,15 +3,14 @@ import Header from "./Header";
 import { checkValidData } from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const name = useRef(null);
     const email = useRef(null);
@@ -31,15 +30,13 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     updateProfile(user, {
-                        displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/a/ACg8ocKTVlVYke83GHTIW2WpOvixmWyf8fgxsE5t2KjEvicpHYYMBQ=s96-c"
+                        displayName: name.current.value, photoURL: USER_AVATAR
                       }).then(() => {
                         const { uid, email, displayName, photoURL} = auth.currentUser;
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
-                        navigate("/browse")
                       }).catch((error) => {
                         setErrorMessage("Oops some error occured");
                       }); 
-                    console.log(user);
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -51,14 +48,12 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log(user)
-                    navigate("/browse")
+                    // console.log(user)
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setErrorMessage("User does not exist");
-                    console.log(errorCode+errorMessage)
                 });
         }
     };
@@ -67,7 +62,7 @@ const Login = () => {
         <div>
             <Header />
             <div className="absolute">
-                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/bfc0fc46-24f6-4d70-85b3-7799315c01dd/web/IN-en-20240923-TRIFECTA-perspective_74e21c19-980e-45ef-bd6c-78c1a6ce9381_large.jpg" alt="Netflix Background"/>
+                <img src={BG_URL} alt="Netflix Background"/>
             </div>
             <form onSubmit={(e) => e.preventDefault()} className="w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
                 <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
