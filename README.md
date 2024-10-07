@@ -13,6 +13,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - firebase setup
 - deploying our app to production
 - create signup user account
+- implemented signin/signup user api
+- created redux store with userSlice
+- implemented sign out
+- update profile
+- BugFix: Sign up user displayName and profile picture update
+- BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
+- Unsubscibed to the onAuthStateChanged callback
 
 ## Features
 - Login/Sign Up
