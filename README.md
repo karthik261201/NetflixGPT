@@ -5,6 +5,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Netflix-GPT
 - create react app
 - configured tailwind css
+- routing of app
+- login form
+- sign up form
+- form validation
+- useRef Hook
+- firebase setup
+- deploying our app to production
+- create signup user account
 
 ## Features
 - Login/Sign Up
