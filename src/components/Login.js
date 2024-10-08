@@ -39,20 +39,20 @@ const Login = () => {
                       }); 
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    // const errorCode = error.code;
+                    // const errorMessage = error.message;
                     setErrorMessage("Oops some error occured");
                 });
         } 
         else {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    const user = userCredential.user;
+                    // const user = userCredential.user;
                     // console.log(user)
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    // const errorCode = error.code;
+                    // const errorMessage = error.message;
                     setErrorMessage("User does not exist");
                 });
         }

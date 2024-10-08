@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// everything in local happens 2 times because of strict mode
+// this is because react does some extra rendering to check the inconsistency in the calls
 root.render(
   <React.StrictMode>
     <App />
