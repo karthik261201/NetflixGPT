@@ -7,7 +7,7 @@ const useMovieTrailer = (props) => {
     // console.log(props)
     const dispatch = useDispatch()
     const {movieId} = props
-    console.log(movieId)
+    // console.log(movieId)
 
     const getMovieVideos = async () => {
         const data = await fetch("https://api.themoviedb.org/3/movie/"+movieId+"/videos",API_OPTIONS)
@@ -16,7 +16,7 @@ const useMovieTrailer = (props) => {
 
         const filterData = json.results.filter( m => m.type === "Trailer")
         const trailer = filterData.length ? filterData[0] : filterData.results[0]
-        console.log(trailer)
+        // console.log(trailer)
         dispatch(addTrailerVideo(trailer))
     }
 
