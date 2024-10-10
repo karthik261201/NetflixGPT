@@ -7,7 +7,7 @@ const useMovieTrailer = (props) => {
     // console.log(props)
     const dispatch = useDispatch()
     const {movieId} = props
-    const trailerVideo = useSelector((store) => store.movies.trailerVideo);
+    const trailerVideo = useSelector((store) => store.movie.trailerVideo);
     // console.log(movieId)
 
     const getMovieVideos = async () => {
