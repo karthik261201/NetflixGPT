@@ -9,14 +9,14 @@ const usePopularMovies = () => {
     const popularMovies = useSelector((store) => store.movie.popularMovies);
 
     const getPopularMovies = async () => {
-        const data = await fetch("https://api.themoviedb.org/3/movie/popular?lpage=1",API_OPTIONS)
+        const data = await fetch("https://api.themoviedb.org/3/movie/popular?page=1",API_OPTIONS)
         const json = await data.json()
         dispatch(addPopularMovies(json.results))
     }
     
     useEffect(()=>{
         !popularMovies && getPopularMovies()
-    },[])
+    },[dispatch, popularMovies])
 }
 
 export default usePopularMovies
