@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
 import { changeLanguage, changeUrl } from '../utils/configSlice';
+import logo from "../utils/images/gpt-icon.png"
 
 const Header = () => {
 
@@ -76,8 +77,8 @@ const Header = () => {
                             onClick={handleGptToggle}
                             className="text-xs lg:text-sm mx-6 p-1 lg:p-2 text-white hover:border hover:rounded-lg"
                         >
-                            {/* <img className="w-4 lg:w-6 inline-flex" src={aiLogo} alt="ai" />{" "} */}
-                            AI Search
+                            <img className="w-4 lg:w-6 inline-flex" src={logo} alt="ai" />
+                            GPT Search
                         </button>
 
                         <button
