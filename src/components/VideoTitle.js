@@ -3,13 +3,19 @@ const VideoTitle = (props) => {
     const { title, overview } = props
 
     return (
-        <div className="w-screen aspect-video pt-[20%] px-6 md:px-24 absolute text-white bg-gradient-to-r from-black">
-            <h1 className="text-xl md:text-4xl font-bold">{title}</h1>
-            <p className="hidden md:inline-block py-6 text-md w-1/4">{overview}</p>
-            <div className="my-4 md:m-0">
-                <button className="bg-white text-black py-1 md:py-4 px-3 md:px-12 text-xl rounded-lg hover:bg-opacity-80">▶️ Play</button>
-                <button className="hidden md:inline-block mx-2 bg-gray-500 text-white p-2 px-8 text-xl bg-opacity-50 rounded-lg">More Info</button>
-            </div>
+        <div className="ml-2 mt-[16%] md:mt-[8%] lg:mt-[13%] absolute z-10">
+            <h1 className="font-bold text-lg md:text-2xl lg:text-4xl m-3 text-white">
+                {title}
+            </h1>
+            <p className="hidden md:text-[14px] md:block lg:text-lg lg:block w-[25%] m-3 text-white">
+                {overview}
+            </p>
+            <button className="bg-white w-[3rem] md:w-[7rem] lg:w-32 p-1 md:p-2 lg:p-3 mx-3 my-0 lg:my-4 font-bold rounded text-xs sm:text-md md:text-lg lg:text-lg">
+                ▶️ Play
+            </button>
+            <button className="bg-zinc-600 w-[5rem] md:w-[8rem] lg:w-[9rem] p-1 md:p-2 lg:p-3 my-0 sm:my-2 md:my-2 lg:my-4 font-bold text-white rounded text-xs sm:text-md md:text-lg lg:text-lg bg-opacity-70">
+                More Info
+            </button>
         </div>
     )
 }

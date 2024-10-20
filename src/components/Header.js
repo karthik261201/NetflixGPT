@@ -57,14 +57,14 @@ const Header = () => {
     }, [])
 
     return (
-        <div className="flex justify-between items-center bg-gradient-to-b from-black absolute z-10 w-full bg-black lg:bg-transparent pb-2 lg:pb-0 lg:pt-4">
+        <div className={`flex justify-between items-center bg-gradient-to-b ${url === "main" ? 'bg-black' : 'from-transparent'} absolute z-10 w-full pb-2 lg:pb-0 lg:pt-4`}>
             <img
-                className="w-[5rem] lg:w-[10rem] brightness-100 contrast-150 ml-3 mt-1 lg:mt-0 lg:ml-10"
+                className="w-[5rem] lg:w-[10rem] brightness-100 contrast-150 ml-2 mt-1 lg:mt-0"
                 src={LOGO}
                 alt="logo"
             />
 
-            <div className="flex items-center mr-2 lg:mr-10 mt-0 lg:mt-4 space-x-0 lg:space-x-3 pt-2 lg:pr-4">
+            <div className="flex items-center mr-2 lg:mr-10">
                 
                 {   url === "main" && (
                     <>

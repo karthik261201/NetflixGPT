@@ -39,7 +39,7 @@ const LandingPage = () => {
                     />
                     <button
                         onClick={handleSignUp}
-                        className="bg-red-700 hover:contrast-100 contrast-150 px-2 lg:px-4 py-1 lg:py-2 rounded-md lg:mt-10 mt-6 text-white font-bold h-full content-center lg:mr-[20rem] mr-4"
+                        className="bg-red-700 hover:contrast-100 contrast-150 px-2 lg:px-4 py-1 lg:py-2 rounded-md text-white font-bold h-full content-center lg:mr-[20rem] mr-4"
                     >
                         Sign Up
                     </button>
