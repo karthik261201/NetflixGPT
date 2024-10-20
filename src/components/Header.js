@@ -5,41 +5,33 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
-import { toggleGptSearchView } from "../utils/gptSlice"
-import { changeLanguage } from '../utils/configSlice';
+import { changeLanguage, changeUrl } from '../utils/configSlice';
 
 const Header = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(store => store.user)
-    const showGptSearch = useSelector(store => store.gpt.showGptSearch)
+    const url = useSelector(store => store.config.url)
 
     const handleSignOut = () => {
-        signOut(auth).then(() => {})
-        .catch((error) => {
-            navigate("/error")
-        });
+        signOut(auth).
+            then(() => { 
+                dispatch(removeUser());
+                navigate("/");
+                dispatch(changeUrl("landing"))
+            })
+            .catch((error) => {
+                navigate("/error")
+            });
     }
 
-    useEffect(()=> {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-              const { uid, email, displayName, photoURL} = user;
-              dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
-              navigate("/browse")
-            } else {
-              dispatch(removeUser())
-              navigate("/")
-            }
-        });
+    const handleHomeToggle = () => {
+        dispatch(changeUrl("main"))
+    }
 
-        // this is will be unsubscribed when component unmounts
-        return () => unsubscribe()
-    },[])
-
-    const handleGptSearch = () => {
-        dispatch(toggleGptSearchView())
+    const handleGptToggle = () => {
+        dispatch(changeUrl("gpt"))
     }
 
     const handleLanguageChange = (e) => {
@@ -47,23 +39,82 @@ const Header = () => {
         dispatch(changeLanguage(lang))
     }
 
-    return (
-        <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between ">
-            <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="Netflix logo" />
-            {   user &&
-                <div className="flex p-2 justify-between">
-                    {   showGptSearch &&
-                        <select onChange={handleLanguageChange} className='p-2 m-2 bg-gray-700 text-white '>
-                        {
-                            SUPPORTED_LANGUAGES.map(lang => <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)
-                        }
-                        </select>
-                    }
-                    <button onClick={handleGptSearch} className='py-2 px-4 mx-4 my-2 bg-purple-700 text-white rounded-lg'>{ showGptSearch ? "Home Page" : "GPT search" }</button>
-                    <img className="hidden md:inline-block w-12 h-12" src={user?.photoURL} alt="user-icon" />
-                    <button onClick={handleSignOut} className="font-bold text-white">Sign Out</button>
-                </div>
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const { uid, email, displayName, photoURL } = user;
+                dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
+                dispatch(changeUrl("main"))
+                navigate("/browse")
+            } else {
+                dispatch(removeUser())
+              navigate("/login")
             }
+        });
+
+        // this is will be unsubscribed when component unmounts
+        return () => unsubscribe()
+    }, [])
+
+    return (
+        <div className="flex justify-between items-center bg-gradient-to-b from-black absolute z-10 w-full bg-black lg:bg-transparent pb-2 lg:pb-0 lg:pt-4">
+            <img
+                className="w-[5rem] lg:w-[10rem] brightness-100 contrast-150 ml-3 mt-1 lg:mt-0 lg:ml-10"
+                src={LOGO}
+                alt="logo"
+            />
+
+            <div className="flex items-center mr-2 lg:mr-10 mt-0 lg:mt-4 space-x-0 lg:space-x-3 pt-2 lg:pr-4">
+                
+                {   url === "main" && (
+                    <>
+                        <h1 className="hidden lg:inline-block text-white text-sm px-4">
+                            Hello, {user?.displayName?.split(" ")?.filter((word) => word)[0]}
+                        </h1>
+
+                        <button
+                            onClick={handleGptToggle}
+                            className="text-xs lg:text-sm mx-6 p-1 lg:p-2 text-white hover:border hover:rounded-lg"
+                        >
+                            {/* <img className="w-4 lg:w-6 inline-flex" src={aiLogo} alt="ai" />{" "} */}
+                            AI Search
+                        </button>
+
+                        <button
+                            className="text-xs lg:text-sm  hover:border hover:rounded-lg py-1 lg:py-2 px-2 lg:px-4  text-white"
+                            onClick={handleSignOut}
+                        >
+                            Logout
+                        </button>
+                    </>
+                )}
+
+                {   url === "gpt" && (
+                    <>
+                        <select
+                            className="text-white p-1 lg:p-2 bg-transparent hover:border hover:rounded-lg mr-5 lg:mr-10 text-xs lg:text-[1rem]"
+                            onChange={handleLanguageChange}
+                        >
+                            {SUPPORTED_LANGUAGES.map((lang) => (
+                                <option
+                                    key={lang.identifier}
+                                    value={lang.identifier}
+                                    className="text-black text-xs lg:text-[1rem]"
+                                >
+                                    {lang.name}
+                                </option>
+                            ))}
+                        </select>
+
+                        <button
+                            onClick={handleHomeToggle}
+                            className="text-white text-xs lg:text-[1rem] hover:border hover:rounded-lg py-1 lg:py-2 px-3"
+                        >
+                            Home
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
     )
 }

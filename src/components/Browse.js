@@ -9,7 +9,7 @@ import GptSearch from './GptSearch'
 
 const Browse = () => {
 
-    const showGptSearch = useSelector(store => store.gpt.showGptSearch)
+    const url = useSelector(store => store.config.url)
     useNowPlayingMovies()
     usePopularMovies()
 
@@ -17,7 +17,7 @@ const Browse = () => {
         <div>
             <Header />
             {
-                showGptSearch ? <GptSearch /> : 
+                url === "gpt" ? <GptSearch /> : 
                 <>
                     <MainContainer />
                     <SecondaryContainer />
