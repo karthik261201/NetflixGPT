@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const gptSlice = createSlice({
     name: 'gpt',
     initialState: {
+        error: null,
         movieNames: null,
         movieResults: null
     },
@@ -12,9 +13,12 @@ const gptSlice = createSlice({
             state.movieNames = movieNames;
             state.movieResults = movieResults;
         },
+        showError: (state, action) => {
+            state.error = action.payload;
+        }
     }
 })
 
-export const { addGptMovieResult } = gptSlice.actions
+export const { addGptMovieResult, showError } = gptSlice.actions
 
 export default gptSlice.reducer

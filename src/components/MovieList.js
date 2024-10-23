@@ -3,8 +3,7 @@ import MovieCard from "./MovieCard"
 const MovieList = (props) => {
 
     const { title, movies } = props
-    if (!movies) return
-    // console.log(movies)
+    if (!movies) return null
 
     return (
         <div className="px-6">

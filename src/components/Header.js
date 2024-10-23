@@ -7,6 +7,7 @@ import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
 import { changeLanguage, changeUrl } from '../utils/configSlice';
 import logo from "../utils/images/gpt-icon.png"
+import { addGptMovieResult } from '../utils/gptSlice';
 
 const Header = () => {
 
@@ -29,6 +30,7 @@ const Header = () => {
 
     const handleHomeToggle = () => {
         dispatch(changeUrl("main"))
+        dispatch(addGptMovieResult({ movieNames: "", movieResults: "" }));
     }
 
     const handleGptToggle = () => {

@@ -1,15 +1,19 @@
 import openai from "../utils/openai";
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/language";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { API_OPTIONS, BG_URL } from "../utils/constants";
-import { addGptMovieResult } from "../utils/gptSlice";
+import { addGptMovieResult, showError } from "../utils/gptSlice";
+import GptMovieSuggestions from "./GptMovieSuggestion";
+import Loader from "./Loader";
 
 const GptSearchBar = () => {
 
     const dispatch = useDispatch();
+    const errorMessage = useSelector((store) => store.gpt.error);
     const langKey = useSelector(store => store.config.language)
     const searchText = useRef(null);
+    const [loading, setLoading] = useState(false);
     // console.log(langKey)
 
     const searchMovieTMDB = async (movie) => {
@@ -25,9 +29,12 @@ const GptSearchBar = () => {
     };
     
     const handleGptSearchClick = async () => {
+      try{
+        setLoading(true); // Start loading
         // console.log(searchText.current.value)
         const gptQuery = "Act as a Movie Recommendation system and suggest some movies for the query : " + searchText.current.value +". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
-    
+        searchText.current.value = ""
+
         const gptResults = await openai.chat.completions.create({
           messages: [{ role: "system", content: gptQuery }],
           model: "gpt-3.5-turbo",
@@ -43,11 +50,19 @@ const GptSearchBar = () => {
         // console.log(tmdbResults);
 
         dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }));
-    }
+      }
+      catch (error) {
+        console.error("Error fetching GPT results", error);
+        dispatch(showError(error.message));
+      }
+      finally {
+        setLoading(false); // Stop loading
+      }
+    }   
 
     return (
           <div
-            className="text-white pt-[15rem] min-h-screen bg-cover relative"
+            className="text-white pt-[15rem] min-h-screen bg-auto relative"
             style={{
               backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${BG_URL})`,
             }}
@@ -66,6 +81,22 @@ const GptSearchBar = () => {
                   {lang[langKey].search} →
                 </button>
             </form>
+
+            {loading && (
+              <div className="flex justify-center mt-4">
+                <Loader />
+              </div>
+            )}
+
+            {!loading && errorMessage && (
+              <div className="flex justify-center">
+                <h1 className="text-white p-2 m-2 w-fit text-center font-bold items-center text-md lg:text-xl">
+                  {lang[langKey].gptError}
+                </h1>
+              </div>
+            )}
+
+            {!loading && !errorMessage && <GptMovieSuggestions />}
         </div>
     )
 }
