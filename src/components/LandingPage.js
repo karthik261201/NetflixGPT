@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { changeUrl } from "../utils/configSlice"
 import { useRef } from "react"
 import download from "../utils/images/download.gif";
+import Footer from "./Footer"
 
 const LandingPage = () => {
 
@@ -250,6 +251,8 @@ const LandingPage = () => {
                     />
                 </div>
             </section>
+
+            <Footer />
         </div>
     )
 }

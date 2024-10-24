@@ -6,6 +6,7 @@ import { API_OPTIONS, BG_URL } from "../utils/constants";
 import { addGptMovieResult, showError } from "../utils/gptSlice";
 import GptMovieSuggestions from "./GptMovieSuggestion";
 import Loader from "./Loader";
+import Footer from "./Footer"
 
 const GptSearchBar = () => {
 
@@ -93,6 +94,8 @@ const GptSearchBar = () => {
             )}
 
             {!loading && !errorMessage && <GptMovieSuggestions />}
+            
+            <Footer />
         </div>
     )
 }

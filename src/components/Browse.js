@@ -9,6 +9,7 @@ import GptSearch from './GptSearch'
 import useTopRatedMovies from '../hooks/useTopRatedMovies'
 import useUpcomingMovies from '../hooks/useUpcomingMovies'
 import MoviePlay from './MoviePlay'
+import Footer from './Footer'
 
 const Browse = () => {
 
@@ -28,6 +29,7 @@ const Browse = () => {
                     <>
                         <MainContainer />
                         <SecondaryContainer />
+                        <Footer />
                     </>
                 )
             }

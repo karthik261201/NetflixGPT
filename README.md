@@ -1,70 +1,42 @@
+# 🎥 NetFlixGPT
+
+**NetFlixGPT** is an innovative application that combines the best of **Netflix** and **AI**, featuring advanced search functionality powered by **OPENAI GPT API**. Discover trending movies, trailers, and a seamless viewing experience all in one place!
+
+---
+
+## 💠 Key Features
+
+- 🔐 **User Authentication**: Secure signup and login ensuring that only registered users can access the platform.
+- ✅ **Form Validation**: Provides error messages for seamless user registration and login.
+- 🎬 **Live Movie Data**: Displays trailers and overviews of trending movies in real-time.
+- 🤖 **AI-Powered Search**: Offers advanced search functionality with suggestions based on user prompts.
+- 🌐 **Multilingual Support**: AI search supports multiple languages, including English, Hindi, Spanish.
+- 📱 **Responsive Design**: Ensures the app looks great on all devices.
+- 🚀 **Smooth Navigation**: Seamless page transitions and efficient state management.
+- ⚡ **Performance Optimization**: Enhances app performance and user experience through memoization and lazy loading.
+
+---
+
+## 💠 Tools Used
+
+- ⚛️ **React**: For rendering components and overall app structure.
+- 🗂️ **Redux**: For state management.
+- 🌐 **React Router**: For smooth page transitions.
+- 🔥 **Firebase**: For user authentication.
+- 📝 **Regex**: For form validation.
+- 🎥 **TMDB API**: For live movie data.
+- ✨ **GPT API**: For AI-powered search functionality.
+- 💅 **Tailwind CSS**: For responsive design and styling.
+
+---
+
+Check out the live project [NetFlixGPT]().
+
+CineflixGPT is still in development, and I would love your contributions and support!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Netflix-GPT
-- create react app
-- configured tailwind css
-- routing of app
-- login form
-- sign up form
-- form validation
-- useRef Hook
-- firebase setup
-- deploying our app to production
-- create signup user account
-- implemented signin/signup user api
-- created redux store with userSlice
-- implemented sign out
-- update profile
-- BugFix: Sign up user displayName and profile picture update
-- BugFix: if the user is not logged in Redirect /browse to Login Page and vice-versa
-- Unsubscibed to the onAuthStateChanged callback
-- Add hardcoded values to the constants file
-- Regiter TMDB API & create an app & get access token
-- Get Data from TMDB now playing movies list API
-- Custom Hook for Now Playing Movies
-- Create movieSlice
-- Update Store with movies Data
-- Planning for MainContauiner & secondary container
-- Fetch Data for Trailer Video
-- Update Store with Trailer Video Data
-- Embedded the Yotube video and make it autoplay and mute
-- Tailwind Classes to make Main Container look awesome
-- Build Secondary Component
-- Build Movie List
-- build Movie Card
-- TMDB Image CDN URL
-- Made the Browsre page amazing with Tailwind CSS
-- usePopularMovies Custom hook
-- GPT Search Page
-- GPT Search Bar
-- (BONUS) Multi-language Feature in our App
-- Get Open AI Api Key
-- Gpt Search API Call
-- fetched gptMoviesSuggestions from TMDB
-- created gptSlice added data
-- Resused Movie List component to make movie suggestion container
-- Memoization
-- Added .env file
-- Adding .env file to gitignore
-- Made our Site Responsive
-- make Footer and Play Movie(remaining)
-
-## Features
-- Login/Sign Up
-    - Sign In /Sign up Form
-    - redirect to Browse Page
-- Browse (after authentication)
-    - Header
-    - Main Movie
-        - Trailer in Background
-        - Title & Description
-        - MovieSuggestions
-            - MovieLists * N
-- NetflixGPT
-    - Search Bar
-    - Movie Suggestions
 
 ## Available Scripts
 
