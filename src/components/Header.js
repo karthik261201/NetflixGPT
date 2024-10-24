@@ -17,13 +17,11 @@ const Header = () => {
     const url = useSelector(store => store.config.url)
 
     const handleSignOut = () => {
-        signOut(auth).
-            then(() => { 
+        signOut(auth).then(() => { 
                 dispatch(removeUser());
                 navigate("/");
                 dispatch(changeUrl("landing"))
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 navigate("/error")
             });
     }
