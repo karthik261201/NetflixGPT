@@ -28,6 +28,11 @@ const Header = () => {
             });
     }
 
+    const handleBackToggle = () => {
+        dispatch(changeUrl("main"))
+        navigate("/browse")
+    }
+
     const handleHomeToggle = () => {
         dispatch(changeUrl("main"))
         dispatch(addGptMovieResult({ movieNames: "", movieResults: "" }));
@@ -60,7 +65,7 @@ const Header = () => {
     }, [])
 
     return (
-        <div className={`flex justify-between items-center bg-gradient-to-b ${url === "main" ? 'bg-black' : 'from-transparent'} absolute z-10 w-full pb-2 lg:pb-0 lg:pt-4`}>
+        <div className={`flex justify-between items-center bg-gradient-to-b ${url === "main" || url === "play" ? 'bg-black' : 'from-transparent'} absolute z-10 w-full pb-2 lg:pb-0 lg:pt-4`}>
             <img
                 className="w-[5rem] lg:w-[10rem] brightness-100 contrast-150 ml-2 mt-1 lg:mt-0"
                 src={LOGO}
@@ -116,6 +121,12 @@ const Header = () => {
                             Home
                         </button>
                     </>
+                )}
+
+                { url === "play" && (
+                    <button onClick={handleBackToggle} className="text-white text-md hover:border hover:rounded-lg py-1 px-3 mr-10">
+                        Back
+                    </button>
                 )}
             </div>
         </div>

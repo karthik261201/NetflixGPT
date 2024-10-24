@@ -5,7 +5,6 @@ const VideoBackground = (props) => {
 
     useMovieTrailer(props)
     const trailerVideo = useSelector(store => store.movie?.trailerVideo)
-    // console.log(trailerVideo)
     
     return (
         <div>

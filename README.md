@@ -49,6 +49,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Added .env file
 - Adding .env file to gitignore
 - Made our Site Responsive
+- make Footer and Play Movie(remaining)
 
 ## Features
 - Login/Sign Up

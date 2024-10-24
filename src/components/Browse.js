@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import GptSearch from './GptSearch'
 import useTopRatedMovies from '../hooks/useTopRatedMovies'
 import useUpcomingMovies from '../hooks/useUpcomingMovies'
+import MoviePlay from './MoviePlay'
 
 const Browse = () => {
 
@@ -21,11 +22,14 @@ const Browse = () => {
         <div>
             <Header />
             {
-                url === "gpt" ? <GptSearch /> : 
-                <>
-                    <MainContainer />
-                    <SecondaryContainer />
-                </>
+                url === "play" ? ( <MoviePlay /> ) : 
+                url === "gpt" ? ( <GptSearch /> ) : 
+                (
+                    <>
+                        <MainContainer />
+                        <SecondaryContainer />
+                    </>
+                )
             }
         </div>
     )

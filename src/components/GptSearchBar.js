@@ -14,7 +14,6 @@ const GptSearchBar = () => {
     const langKey = useSelector(store => store.config.language)
     const searchText = useRef(null);
     const [loading, setLoading] = useState(false);
-    // console.log(langKey)
 
     const searchMovieTMDB = async (movie) => {
         const data = await fetch(
@@ -30,8 +29,8 @@ const GptSearchBar = () => {
     
     const handleGptSearchClick = async () => {
       try{
-        setLoading(true); // Start loading
-        // console.log(searchText.current.value)
+        setLoading(true); 
+
         const gptQuery = "Act as a Movie Recommendation system and suggest some movies for the query : " + searchText.current.value +". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
         searchText.current.value = ""
 
@@ -40,14 +39,11 @@ const GptSearchBar = () => {
           model: "gpt-3.5-turbo",
         });
 
-        if (!gptResults.choices) { console.log("error") }
-        console.log(gptResults.choices?.[0]?.message?.content);
+        if (!gptResults.choices) { console.error("error") }
 
         const gptMovies = gptResults.choices?.[0]?.message?.content.split(", ")
         const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
         const tmdbResults = await Promise.all(promiseArray);
-        
-        // console.log(tmdbResults);
 
         dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }));
       }
@@ -56,7 +52,7 @@ const GptSearchBar = () => {
         dispatch(showError(error.message));
       }
       finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     }   
 

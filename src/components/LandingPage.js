@@ -18,7 +18,6 @@ const LandingPage = () => {
     };
 
     const handleSignUp = () => {
-        // console.log("signup clicked")
         dispatch(changeUrl("login"))
         navigate("/login")
     }
