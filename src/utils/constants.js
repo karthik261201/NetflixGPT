@@ -5,7 +5,9 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY
+    'Access-Control-Allow-Origin': "https://netflix-gpt-karthiknarayanan.vercel.app",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
+    // 'Access-Control-Allow-Origin': "http://localhost:3000/browse",
   }
 };
 
