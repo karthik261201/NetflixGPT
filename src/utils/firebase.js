@@ -9,7 +9,7 @@ import { getAuth } from "firebase/auth"
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBuFstELb6f9yelsFM66qBLwtT9tDt6AuY",
-  authDomain: "netlifxgpt.firebaseapp.com",
+  authDomain: "https://netflix-gpt-karthiknarayanan.vercel.app",
   projectId: "netlifxgpt",
   storageBucket: "netlifxgpt.appspot.com",
   messagingSenderId: "1078324099047",
