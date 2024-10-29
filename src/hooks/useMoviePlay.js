@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-import { API_OPTIONS } from "../utils/constants"
-import { useDispatch, useSelector } from "react-redux"
+import { TMDB_KEY} from '../utils/constants'
+import { useDispatch } from "react-redux"
 import { addPlayMovie } from "../utils/movieSlice"
 
 const useMoviePlay = (props) => {
@@ -11,7 +11,7 @@ const useMoviePlay = (props) => {
 
     const getMovieVideos = async () => {
         try {
-            const data = await fetch("https://api.themoviedb.org/3/movie/"+id+"/videos",API_OPTIONS)
+            const data = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${TMDB_KEY}`)
             const json = await data.json()
             // console.log(json)
 
