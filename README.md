@@ -30,6 +30,6 @@
 
 ---
 
-Check out the live project [NetFlixGPT]().
+Check out the live project [NetFlixGPT](https://netflix-gpt-karthiknarayanan.vercel.app).
 
 NetFlixGPT is still in development, and I would love your contributions and support!
