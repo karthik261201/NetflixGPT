@@ -41,7 +41,7 @@ const LandingPage = () => {
                         onClick={handleSignUp}
                         className="bg-red-700 hover:contrast-100 contrast-150 px-2 lg:px-4 py-1 lg:py-2 rounded-md text-white font-bold h-full content-center lg:mr-[20rem] mr-4"
                     >
-                        Sign Up
+                        Sign In
                     </button>
                 </header>
                 <div className="justify-center text-center pt-44 lg:pt-64">
@@ -144,7 +144,7 @@ const LandingPage = () => {
                         onClick={handleSignUp}
                         className="bg-red-700 text-lg lg:text-2xl my-6 hover:contrast-100 shadow-2xl shadow-red-800 contrast-150 px-4 py-2 rounded-xl text-white font-bold"
                     >
-                        Sign Up Now →
+                        Sign In Now →
                     </button>
                 </div>
                 <div className="lg:hidden lg:ml-20 lg:w-1/3 flex justify-center">

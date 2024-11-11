@@ -22,6 +22,12 @@ const Login = () => {
     };
 
     const validateForm = () => {
+
+        if (!email.current.value || !password.current.value || (!isSignInForm && !name.current.value)) {
+            setErrorMessage("All fields are required");
+            return;
+        }
+
         const message = checkValidData(email.current.value, password.current.value);
         setErrorMessage(message);
         if (message) return;
@@ -37,13 +43,13 @@ const Login = () => {
                         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }))
                         dispatch(changeUrl("main"))
                       }).catch((error) => {
-                        setErrorMessage("Oops some error occured");
+                        setErrorMessage(error.message);
                       }); 
                 })
                 .catch((error) => {
                     // const errorCode = error.code;
                     // const errorMessage = error.message;
-                    setErrorMessage("Oops some error occured");
+                    setErrorMessage(error.message);
                 });
         } 
         else {
